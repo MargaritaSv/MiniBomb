@@ -4,25 +4,34 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner input = new Scanner(System.in);
         System.out.println("Choose the board size : ");
         System.out.println(" .....  Easy ; Medium ;Hard ");
 
-        Integer size = input.nextInt();
-        String choice = input.next().trim().toLowerCase();
+        Integer size = 8; //input.nextInt();
+        String choice = "easy";//input.next().trim().toLowerCase();
 
         char[][] board = new char[size][size];
         createBoard(board);
 
-        if (choice.equals("easy")) {
-            //TODO: calculated
-        } else if (choice.equals("medium")) {
-
-        } else if (choice.equals("hard")) {
-
-        } else {
-            //TODO: other choice etc error ...  while
+        int blocks = (int) Math.pow(size, 2);
+        int minis;
+        switch (choice) {
+            case "easy": {
+                minis = (int) Math.round(blocks * 0.15);
+                break;
+            }
+            case "medium": {
+                minis = (int) Math.round(blocks * 0.5);
+                break;
+            }
+            case "hard": {
+                minis = (int) Math.round(blocks * 0.8);
+                break;
+            }
+            default:
+                throw new IllegalArgumentException("Choose between this three choices");
         }
     }
 
